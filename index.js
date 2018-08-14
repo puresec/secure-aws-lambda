@@ -30,7 +30,6 @@ const generateLoader = (inputs) => {
 
 const deploy = async (inputs, context) => {
   let tmpDir = tmp.dirSync();
-  console.log("tmpDir:" + tmpDir.name);
   let originalRoot = inputs.root || ".";
   inputs.root = tmpDir.name;
   fs.copySync(originalRoot, inputs.root);
