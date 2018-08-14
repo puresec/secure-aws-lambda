@@ -8,13 +8,12 @@ const path = require("path");
 
 
 const LOADER_NAME = "loader";
-const HANDLER_NAME = "originalHandler";
+const HANDLER_NAME = "handler";
 
-const LOADER_TEMPLATE = `
-const FunctionShield = require('@puresec/function-shield');
-FunctionShield.configure(
-{
-  policy: %o,
+const LOADER_TEMPLATE =
+`const FunctionShield = require('@puresec/function-shield');
+FunctionShield.configure({
+  policy: %j,
   token: process.env.FUNCTION_SHIELD_TOKEN
 });
 exports.${HANDLER_NAME} = require('%s').%s;
