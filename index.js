@@ -34,7 +34,7 @@ const deploy = async (inputs, context) => {
   inputs.root = tmpDir.name;
   fs.copySync(originalRoot, inputs.root);
 
-  child_process.execFileSync("npm", ["install", "--loglevel", "error", `@puresec/function-shield@${inputs.version}`, "--no-save"], {cwd: inputs.root});
+  child_process.execFileSync("npm", ["install", "--loglevel", "error", `@puresec/function-shield@${inputs.function_shield_version}`, "--no-save"], {cwd: inputs.root});
 
   let loaderStr = generateLoader(inputs);
   fs.writeFileSync(path.join(inputs.root, `${LOADER_NAME}.js`), loaderStr);

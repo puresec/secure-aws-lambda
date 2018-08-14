@@ -33,4 +33,4 @@ components:
         read_write_tmp: block
         create_child_process: block
       token: ${env.FUNCTION_SHIELD_TOKEN}
-      version: 1.0.2
+      function_shield_version: 1.0.2
