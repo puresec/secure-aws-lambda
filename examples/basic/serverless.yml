@@ -2,6 +2,13 @@ type: basic-aws-lambda-example
 version: 0.0.1
 
 components:
+  myFunction:
+    type: aws-lambda
+    inputs:
+      name: aws-lambda-basic-component
+      handler: handler.hello
+      memory: 256
+      timeout: 3
   alertFunction:
     type: ../../
     inputs:
