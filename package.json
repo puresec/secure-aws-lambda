@@ -2,6 +2,6 @@
   "private": true,
   "devDependencies": {
     "fs-extra": "^7.0.0",
-    "tmp": "0.0.33"
+    "tmp-promise": "^1.0.5"
   }
 }
