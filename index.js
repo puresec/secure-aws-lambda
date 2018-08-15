@@ -11,10 +11,11 @@ const LOADER_NAME = "loader";
 const HANDLER_NAME = "handler";
 
 const LOADER_TEMPLATE =
-`const FunctionShield = require('@puresec/function-shield');
+  `const FunctionShield = require('@puresec/function-shield');
 FunctionShield.configure({
   policy: %j,
-  token: process.env.FUNCTION_SHIELD_TOKEN
+  token: process.env.FUNCTION_SHIELD_TOKEN,
+  disable_analytics: %o
 });
 exports.${HANDLER_NAME} = require('%s').%s;
 `;
@@ -23,7 +24,7 @@ const generateLoader = (inputs) => {
   let handlerParts = inputs.handler.split('.');
   let originalModulePath = handlerParts[0];
   let originalHandlerName = handlerParts[1];
-  return util.format(LOADER_TEMPLATE, inputs.policy, originalModulePath, originalHandlerName);
+  return util.format(LOADER_TEMPLATE, inputs.policy, inputs.disableAnalytics, originalModulePath, originalHandlerName);
 };
 
 
@@ -33,7 +34,7 @@ const deploy = async (inputs, context) => {
   inputs.root = tmpDir.name;
   fs.copySync(originalRoot, inputs.root);
 
-  child_process.execFileSync("npm", ["install", "--loglevel", "error", `@puresec/function-shield@${inputs.function_shield_version}`, "--no-save"], {cwd: inputs.root});
+  child_process.execFileSync("npm", ["install", "--loglevel", "error", `@puresec/function-shield@${inputs.functionShieldVersion}`, "--no-save"], {cwd: inputs.root});
 
   let loaderStr = generateLoader(inputs);
   fs.writeFileSync(path.join(inputs.root, `${LOADER_NAME}.js`), loaderStr);
