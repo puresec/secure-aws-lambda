@@ -3,7 +3,7 @@ version: 1.0.0
 core: 0.2.x
 
 description: AWS Lambda Serverless Component Secured by Puresec FunctionShield
-license: ????
+license: Apache-2.0
 author: Puresec <support@puresec.io> (https://puresec.io)
 repository: github:puresec/secure-aws-lambda
 
